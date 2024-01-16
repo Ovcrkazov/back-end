@@ -27,7 +27,7 @@ class DefaultController extends AbstractController
         if ($username && $password) {
             $result['username'] = $username;
             $result['password'] = $password;
-        }
+          }
         return $this->json($result);
     }
 
@@ -35,9 +35,9 @@ class DefaultController extends AbstractController
     public function scan(Request $request): JsonResponse
     {
         $result = array();
-        $data = $request->get('data');
-        if ($data) {
-            $result['data'] = $data;
+        $requestData = json_decode($request->getContent(), true);
+        if (isset($requestData['data'])) {
+            $result['data'] = $requestData['data'];
         }
         return $this->json($result);
     }
